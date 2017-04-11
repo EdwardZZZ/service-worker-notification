@@ -1,0 +1,19 @@
+server {
+    listen 443;
+    server_name z.com;
+
+    ssl on;
+    ssl_certificate /Users/a58/server.pem;
+    ssl_certificate_key /Users/a58/privkey.pem;
+
+
+    location / {
+        proxy_buffer_size 64k;
+        proxy_buffers   32 32k;
+        proxy_busy_buffers_size 128k;
+    }
+
+    location ~  {
+        proxy_pass   https://127.0.0.1:7000;
+    }
+}
